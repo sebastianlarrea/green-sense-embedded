@@ -1,0 +1,46 @@
+.program dht22
+    set pins, 1 ;Establece los pines en 1
+    set pindirs, 1; Establece los pines como salidas
+
+repeat:
+    pull block ; Copia al registro OSR el valor enviado desde el programa
+    set pins, 0 ; Pone un cero en la salida para enviarlo al DHT 
+
+;Se debe enviar el cero durante más o menos 1 ms, como el reloj de la fsm está en 2us y osr tiene el valor 500
+
+mov x, osr ;Se hace una copia del valor del osr
+
+loop_start:
+    jmp x--, loop_start ;En este loop se espera 1ms
+
+;Ahora hay que esperar las dos señales en alto y en bajo por parte del periférico
+
+set pindirs, 0 ;Ahora los pines se tratan como entradas
+
+;Se deben recibir los dos pulsos por parte del periferico
+wait 1 pin 0
+wait 0 pin 0
+wait 1 pin 0
+wait 0 pin 0
+
+set y, 31 ;Se van a leer todos los valores de temperatura y humedad
+;Se espera a que la señal este en uno y se aguarda durante 50us, dadas las caracteristicas del estandar luego de este tiempo en la entrada
+; habra un 1 cuando el tiempo en alto sea el correspondiente a 1 y un cero cuando el tiempo en alto sea un cero
+
+loop_reading:
+    wait 1 pin 0 [25] ;Esperamos aproximadamente 50us
+    in pins, 1   ;Se almacena en  un nuevo bit del ISR (input shift register) el valor actual en la entrada
+    wait 0 pin 0 ;Se espera ahora un cero para volver a empezar
+    jmp y--, loop_reading
+
+;En este punto el ISR está lleno y el autopush envia los datos a la fifo, pero falta el checksum
+
+set y, 7 ;El checksum solamente son 8 bits
+loop_checksum: ;Esto es analogo al anterior pero con una diferencia al final
+    wait 1 pin 0 [25]
+    in pins, 1
+    wait 0 pin 0
+    jmp y--, loop_checksum
+
+;Como el ISR no se llena completamente tenemos que forzar el push
+push block
