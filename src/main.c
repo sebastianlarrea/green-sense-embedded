@@ -7,6 +7,7 @@
 #include "ntp_client.h"
 #include "dht22.h"
 #include "sen0114.h"
+#include "pump_level.h"
 
 void rtc_config(void);
 static void alarm_callback(void);
@@ -56,6 +57,8 @@ int main(void)
     */
 
     dht22_init(0, 16);
+    pump_level_init();
+
     sen0114_init(SEN0114_GPIO, SEN0114_CHAN_SEL);
     while(true) {
         if(!dht22_read()) {
@@ -65,6 +68,7 @@ int main(void)
             printf("Error leyendo el sensor\n");
         }
         printf("% Humedad del suelo: %.2f\n", sen0114_read_humidity());
+        printf("Nivel de agua: %s\n", get_pump_level() ? "Normal" : "Bajo");
         busy_wait_ms(2000);
         dht22_restart();
     }

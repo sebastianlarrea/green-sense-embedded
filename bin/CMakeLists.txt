@@ -7,6 +7,7 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
                       ntp_client_lib
                       sen0114_lib
                       dht22_lib
+                      pump_level_lib
                       hardware_sync
                       hardware_rtc)
 

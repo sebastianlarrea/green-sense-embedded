@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DHT22_H
+#define DHT22_H
 
 typedef struct{
     float temperature; /*!< Temperatura en grados Celsius*/
@@ -14,3 +15,5 @@ extern dht_data dht_read_data; /*!< Estructura para almacenar los datos del DHT2
 void dht22_init(uint8_t pio_code, uint8_t pin); /*!< Configura el modulo PIO para el DHT22*/
 bool dht22_read(void); /*!< Lee los datos del DHT22*/
 void dht22_restart(void); /*!< Deshabilita el state machine y libera el PIO*/
+
+#endif /* DHT22_H */

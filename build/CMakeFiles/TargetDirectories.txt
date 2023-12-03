@@ -169,6 +169,8 @@
 /home/yonathan/green-sense-embedded/build/src/CMakeFiles/ntp_client_lib.dir
 /home/yonathan/green-sense-embedded/build/src/CMakeFiles/dht22_lib.dir
 /home/yonathan/green-sense-embedded/build/src/CMakeFiles/sen0114_lib.dir
+/home/yonathan/green-sense-embedded/build/src/CMakeFiles/pump_level_lib.dir
+/home/yonathan/green-sense-embedded/build/src/CMakeFiles/app.dir
 /home/yonathan/green-sense-embedded/build/src/CMakeFiles/dht22_lib_dht22_pio_h.dir
 /home/yonathan/green-sense-embedded/build/src/CMakeFiles/edit_cache.dir
 /home/yonathan/green-sense-embedded/build/src/CMakeFiles/rebuild_cache.dir
