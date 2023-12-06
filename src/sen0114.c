@@ -48,5 +48,6 @@ float sen0114_read_humidity(void)
      * @param in: adc_chan_sel: Canal ADC a utilizar
      * @return out: Valor del sensor en porcentaje de humedad
     */
-    return (float)sen0114_read() * 100.0 / SEN0114_MAX;
+    float hum = (float)sen0114_read() * 100.0 / SEN0114_MAX;
+    return hum > 100.0 ? 100.0 : hum;
 }

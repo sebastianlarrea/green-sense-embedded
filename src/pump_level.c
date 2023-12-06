@@ -9,26 +9,14 @@
 #include "hardware/gpio.h"
 #include "pump_level.h"
 
-void pump_level_init(void)
+void pump_level_init(uint8_t gpio)
 {
-    gpio_init(GPIO_PUMP_LEVEL);
-    gpio_set_dir(GPIO_PUMP_LEVEL, GPIO_IN);
-    gpio_set_irq_enabled_with_callback(GPIO_PUMP_LEVEL, GPIO_IRQ_EDGE_RISE | GPIO_IRQ_EDGE_FALL, true, &pump_level_callback);
+    gpio_init(gpio);
+    gpio_set_dir(gpio, GPIO_IN);
 }
 
-static void pump_level_callback(uint gpio, uint32_t events)
-{
-    if (events & GPIO_IRQ_EDGE_RISE)
-    {
-        printf("IRQ: Nivel de agua alto\n");
-    }
-    else if (events & GPIO_IRQ_EDGE_FALL)
-    {
-        printf("IRQ: Nivel de agua bajo\n");
-    }
-}
 
-bool get_pump_level(void)
+bool get_pump_level(uint8_t gpio)
 {
-    return gpio_get(GPIO_PUMP_LEVEL);
+    return gpio_get(gpio);
 }

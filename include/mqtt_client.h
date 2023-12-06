@@ -6,7 +6,7 @@
     #define SSID "Celeste :3"
     #define PASS "Celeste246-"
     #define IO_USERNAME  "CerealKilleer"
-    #define IO_KEY       "aio_ippW76eXuAO7N5HluOhpPx8SVHeg"
+    #define IO_KEY       "aio_tKgW36wDeBNQsOEUaFismowBKRSm"
     #define TOPIC_TEST   "CerealKilleer/feeds/otras-pruebitas"
     #define TOPIC_PUB    "CerealKilleer/feeds/publicar"
     #define MQTT_SEVER_IP "52.54.110.50"

@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "dht22.pio.h": "c"
+        "dht22.pio.h": "c",
+        "stdint.h": "c"
     }
 }

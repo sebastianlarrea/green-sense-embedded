@@ -3,13 +3,10 @@ add_executable(${CMAKE_PROJECT_NAME}
 
 target_link_libraries(${CMAKE_PROJECT_NAME}
                       pico_stdlib
-                      mqtt_client_lib
-                      ntp_client_lib
-                      sen0114_lib
-                      dht22_lib
-                      pump_level_lib
-                      hardware_sync
-                      hardware_rtc)
+                      pico_cyw43_arch_lwip_threadsafe_background
+                      pico_cyw43_arch_none
+                      pico_lwip_mqtt
+                      app)
 
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC ../include)
 

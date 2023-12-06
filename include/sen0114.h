@@ -1,8 +1,7 @@
 #ifndef __SEN0114_H__
 #define __SEN0114_H__
 
-#define SEN0114_GPIO 26
-#define SEN0114_CHAN_SEL 0
+
 #define SEN0114_MAX 2500
 
 void sen0114_init(const uint8_t, const uint8_t); /*<! Inicializa el modulo*/
