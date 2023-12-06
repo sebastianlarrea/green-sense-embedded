@@ -13,6 +13,7 @@ void pump_level_init(uint8_t gpio)
 {
     gpio_init(gpio);
     gpio_set_dir(gpio, GPIO_IN);
+    gpio_pull_up(gpio);
 }
 
 

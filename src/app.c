@@ -42,6 +42,7 @@ void app_main(void)
 
     while (true) {
         ds3231_clear_alarm();
+        /*
         if(!dht22_read()) {
             printf("Temperatura: %.2f\n", dht_read_data.temperature);
             printf("Humedad: %.2f\n", dht_read_data.humidity);
@@ -51,7 +52,10 @@ void app_main(void)
         printf("% Humedad del suelo: %.2f\n", sen0114_read_humidity());
         printf("Nivel de agua: %s\n", get_pump_level(PUMP_LEVEL_GPIO) ? "Normal" : "Bajo");
         busy_wait_ms(1000);
+
         dht22_restart();
+        */
+        __wfi();
     }
 }
 
