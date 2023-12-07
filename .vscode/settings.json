@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "dht22.pio.h": "c",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "cyw43_arch.h": "c"
     }
 }

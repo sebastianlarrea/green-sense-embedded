@@ -3,6 +3,7 @@
     #include <stdio.h>
     #include "pico/stdlib.h"
     #include "pico/util/datetime.h"
+    #include "pico/time.h"
     #include "mqtt_client.h"
     #include "hardware/sync.h"
     #include "ntp_client.h"
@@ -10,6 +11,7 @@
     #include "sen0114.h"
     #include "pump_level.h"
     #include "ds3231.h"
+    #include <string.h>
     typedef struct {
         struct mqtt_connect_client_info_t ci;
         mqtt_client_t *client;
@@ -19,4 +21,6 @@
     static void gpios_cb(uint, uint32_t);
     static void app_startup_rtc_config(void);
     void app_main(void);
+    static void app_send_sensors(mqtt_connect_t *);
+    static bool repeating_timer_cb(struct repeating_timer *);
 #endif // __APP_H__
