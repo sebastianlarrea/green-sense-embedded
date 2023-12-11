@@ -89,8 +89,8 @@ static void mqtt_incoming_publish_cb(void *arg, const char *topic, uint32_t tot_
      * @param topic Tema del mensaje
      * @param tot_len Longitud total del mensaje
     */
-    if(strcmp(topic, TOPIC_TEST) == 0) {
-        inpub_id = 0;                       /*<! Si el tema es el tema por defecto el id de la publicación es 0*/
+    if(strcmp(topic, TOPIC_IN) == 0) {
+        inpub_id = 0;                       /*<! Si es el tema por el que vienen los datos de ordenes se indica con un cero*/
     }
     else if(strcmp(topic, TOPIC_PUB) == 0) {
         inpub_id = 1;                       /*<! Si lo que se recibe es una respuesta luego de publicar */
@@ -106,14 +106,16 @@ static void mqtt_incoming_data_cb(void *arg, const uint8_t *data, uint16_t len, 
      * @param len Longitud de los datos recibidos
      * @param flags Bandera que indica si es el último paquete de datos
     */
+
+    uint8_t msg[len + 1];
     if(flags && MQTT_DATA_FLAG_LAST) {
         //Se recibió el último paquete de datos
-
         //Dependiendo del tema que envió el mensaje se toman decisiones
-
+        strncpy(msg, data, len);
+        msg[len] = '\0';
         switch (inpub_id) {
         case 0:
-            toogle(*data);
+            printf("Mensaje recibido: %s\n", msg);
             break;
         default:
             break;
