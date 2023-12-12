@@ -11,6 +11,7 @@
 #include "pico/stdlib.h"
 #include "mqtt_client.h"
 #include <string.h>
+#include "app_types.h"
 
 uint8_t inpub_id;
 
@@ -115,7 +116,7 @@ static void mqtt_incoming_data_cb(void *arg, const uint8_t *data, uint16_t len, 
         msg[len] = '\0';
         switch (inpub_id) {
         case 0:
-            printf("Mensaje recibido: %s\n", msg);
+            green_sense_flags.start_water_plant = true;
             break;
         default:
             break;
@@ -123,25 +124,6 @@ static void mqtt_incoming_data_cb(void *arg, const uint8_t *data, uint16_t len, 
     }
 }
 
-static void toogle(const uint8_t data)
-{
-    /**
-     * @brief Función para cambiar el estado del led
-     * @param data 1: encender, 0: apagar
-     * @return true: si se inicializó correctamente, false: si ocurrió un error
-    */
-    switch (data) {
-    case '1':
-        printf("ON\n");
-        break;
-    case '0':
-        printf("OFF\n");
-        break;
-    default:
-        printf("%d", data);
-        break;
-    }
-}
 
 bool subscribe_topic(mqtt_client_t **client, const uint8_t *subtopic)
 {

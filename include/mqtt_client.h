@@ -9,7 +9,7 @@
     #define IO_KEY       "greensense123"
     #define TOPIC_IN   "green-sense-active-valve"
     #define TOPIC_PUB    "green-sense-read-sensors"
-    #define MQTT_SEVER_IP "192.168.88.181"
+    #define MQTT_SEVER_IP "192.168.88.180"
     
     
     bool init_wifi(void);
@@ -18,7 +18,6 @@
     static void mqtt_incoming_publish_cb(void *, const char *, uint32_t);
     static void mqtt_incoming_data_cb(void *, const uint8_t *, uint16_t, uint8_t);
     static void mqtt_pub_request_cb(void *, err_t);
-    static void toogle(const uint8_t);
     bool subscribe_topic(mqtt_client_t **, const uint8_t *);
     bool publish(mqtt_client_t *, void *, const uint8_t *, 
                 const uint8_t *, const uint8_t, const uint8_t);

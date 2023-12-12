@@ -20,4 +20,5 @@
     static void app_send_sensors(mqtt_connect_t *);
     static bool repeating_timer_cb(struct repeating_timer *);
     static void app_init_relay(void);
+    int64_t stop_water_plant_cb(alarm_id_t, void *);
 #endif // __APP_H__
